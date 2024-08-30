@@ -1,7 +1,24 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
+import MainLayout from "@layouts/MainLayout.astro";
+import Title from "@layouts/Title.astro";
+import HomeBlogPost from "@components/HomeBlogPost.astro";
 ---
 
 <MainLayout title="Astro's Blog">
-  <h1 class="text-5xl text-white">Astro</h1>
+  <!-- component -->
+  <section class="bg-white dark:bg-gray-900">
+    <div class="container px-6 py-10 mx-auto">
+      <Title title="From the blog" />
+      <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+        <HomeBlogPost />
+        <HomeBlogPost />
+        <HomeBlogPost />
+        <HomeBlogPost />
+        <HomeBlogPost />
+        <HomeBlogPost />
+        <HomeBlogPost />
+        <HomeBlogPost />
+      </div>
+    </div>
+  </section>
 </MainLayout>
