@@ -2,8 +2,7 @@
 import { ViewTransitions } from "astro:transitions";
 import "../styles/blog.css";
 
-const { ...rest } = Astro.props;
-const { title } = rest.frontmatter;
+const { title } = Astro.props;
 ---
 
 <html lang="en">
@@ -19,7 +18,7 @@ const { title } = rest.frontmatter;
     <a
       href="/"
       class="bg-indigo-600 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg"
-      >Regresar</a
+      id="btn-back">Regresar</a
     >
     <main class="mb-10 max-w-6xl m-auto p-2 text-white">
       <slot />

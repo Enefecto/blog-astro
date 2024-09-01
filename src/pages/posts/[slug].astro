@@ -1,0 +1,77 @@
+---
+import type { GetStaticPaths } from "astro";
+import BlogsLayout from "@layouts/BlogsLayout.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+export const getStaticPaths = (async () => {
+  const BlogPosts = await getCollection("blog");
+
+  return BlogPosts.map((post) => ({
+    params: {
+      slug: post.slug,
+    },
+    props: {
+      post: post,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const frontmatter = post.data;
+const { title, author, image } = frontmatter;
+
+const { Content, headings } = await post.render();
+---
+
+<BlogsLayout title={title}>
+  <h1 class="text-xs text-gray-500 mb-0">{title}</h1>
+  <h4 class="text-md text-gray-400 mb-0">{author}</h4>
+
+  <Image
+    width={600}
+    height={220}
+    src={image}
+    alt={title}
+    loading="lazy"
+    quality="high"
+    class="object-cover w-full h-[250px] my-2 rounded-md"
+    transition:name={`${post.slug}-image`}
+  />
+
+  <!-- NavBar del post -->
+  <h3>Tabla de contenidos</h3>
+  <ol>
+    {
+      headings.map((heading, index) => (
+        <li>
+          <a href={`#${heading.slug}`}>
+            {index + 1} - {heading.text}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+  <!-- Contenido -->
+  <Content />
+  <div class="my-10 flex justify-start">
+    <a
+      class="underline text-2xl flex justify-center items-center"
+      href="#btn-back"
+      >Subir
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"></path>
+      </svg>
+    </a>
+  </div>
+</BlogsLayout>
