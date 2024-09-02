@@ -26,7 +26,6 @@ const authorName = frontmatter.author.id;
 const { Content, headings } = await post.render();
 
 const author = (await getEntry("author", authorName)).data;
-console.log(author);
 ---
 
 <BlogsLayout title={title}>
@@ -41,7 +40,7 @@ console.log(author);
       height={50}
     />
     <div class="flex flex-col ml-5">
-      <a href={`/blog/${author.name}`}>{author.name}</a>
+      <a href={`/blog/${authorName}`}>{author.name}</a>
       <span class="text-xs text-gray-200">
         {FormaterDate.formaterDate(date)}
       </span>
