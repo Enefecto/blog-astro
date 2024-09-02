@@ -10,8 +10,14 @@ const BlogPosts = await getCollection("blog");
 <MainLayout title="Astro's Blog">
   <!-- component -->
   <section class="bg-white dark:bg-gray-900">
-    <div class="container px-6 py-10 mx-auto">
+    <div
+      class="flex flex-col justify-center gap-5 container px-6 py-10 mx-auto"
+    >
       <Title title="Astro's  Blog" />
+      <a
+        class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 cursor-pointer w-max"
+        href="/blog/1">Blog Paginado</a
+      >
       <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
         {BlogPosts.map((post) => <TypedHomeBlogPost post={post} />)}
       </div>
