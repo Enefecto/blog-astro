@@ -15,10 +15,10 @@ const { title } = Astro.props;
     <ViewTransitions />
   </head>
   <body class="bg-slate-900">
-    <a
-      href="/"
+    <button
+      onclick="history.back()"
       class="bg-indigo-600 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg"
-      id="btn-back">Regresar</a
+      id="btn-back">Regresar</button
     >
     <main class="mb-10 max-w-6xl m-auto p-2 text-white">
       <slot />
