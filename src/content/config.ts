@@ -13,6 +13,7 @@ const blogCollection = defineCollection({
       //Relacion
       author: reference("author"),
       tags: z.array(z.string()),
+      isDraft: z.boolean().default(false),
     }),
 });
 

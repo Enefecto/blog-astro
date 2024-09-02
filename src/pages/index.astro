@@ -4,7 +4,10 @@ import MainLayout from "@layouts/MainLayout.astro";
 import Title from "@layouts/Title.astro";
 import { getCollection } from "astro:content";
 
-const BlogPosts = await getCollection("blog");
+const BlogPosts = await getCollection(
+  "blog",
+  (post) => post.data.isDraft === false
+);
 ---
 
 <MainLayout title="Astro's Blog">
